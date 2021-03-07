@@ -2,7 +2,7 @@ import { API, DynamicPlatformPlugin, Logger, PlatformAccessory, PlatformConfig, 
 
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
 import { HueLabsAccessory } from './platformAccessory';
-import { HueApi } from './api'
+import { HueApi } from './api';
 
 /**
  * HomebridgePlatform
@@ -54,7 +54,7 @@ export class HueLabsHomebridgePlatform implements DynamicPlatformPlugin {
    */
   async discoverDevices() {
 
-    let formulars = await this.hueApi.getLabsFormulars();
+    const formulars = await this.hueApi.getLabsFormulars();
 
     // loop over the discovered devices and register each one if it has not already been registered
     for (const device of formulars) {

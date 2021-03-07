@@ -1,5 +1,5 @@
 import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
-import { HueApi } from './api'
+import { HueApi } from './api';
 
 import { HueLabsHomebridgePlatform } from './platform';
 
@@ -12,14 +12,14 @@ export class HueLabsAccessory {
   private service: Service;
 
   private states = {
-    On: false
+    On: false,
   };
 
   constructor(
     private readonly platform: HueLabsHomebridgePlatform,
     private readonly accessory: PlatformAccessory,
-    private sensorKey: String,
-    private hueApi: HueApi
+    private sensorKey: string,
+    private hueApi: HueApi,
   ) {
 
     // set accessory information
@@ -66,8 +66,8 @@ export class HueLabsAccessory {
    * this.service.updateCharacteristic(this.platform.Characteristic.On, true)
    */
   async getOn(): Promise<CharacteristicValue> {
-    let response = await this.hueApi.getLabsStatus(this.sensorKey);
-    const isOn = response.state.status != 0;
+    const response = await this.hueApi.getLabsStatus(this.sensorKey);
+    const isOn = response.state.status !== 0;
 
     this.platform.log.debug('Get Characteristic On ->', isOn);
 
