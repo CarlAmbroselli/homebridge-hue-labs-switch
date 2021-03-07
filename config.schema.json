@@ -9,7 +9,17 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "Hue Labs"
+      },
+      "host": {
+        "title": "Bridge/Gateway IP",
+        "type": "string",
+        "required": true
+      },
+      "token": {
+        "title": "Token",
+        "type": "string",
+        "required": true
       }
     }
   }

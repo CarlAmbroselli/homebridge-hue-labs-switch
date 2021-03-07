@@ -8,6 +8,20 @@
 
 # Homebridge Hue Labs Plugin
 
+## Configuration
+1. Install homebridge-hue-labs plugin
+2. Configure the plugin:
+
+I recommend that you install the homebridge-hue plugin first and use this to establish a connection to the gateway and get a token. Aftwards you'll need to set the following configuration:
+```
+{
+    "platform": "HueLabs",
+    "name": "HueLabs",
+    "host": "<gateway ip, check homekit-hue gateway config>",
+    "token": "<gateway ip, check value of homekit-hue user value (not the user key, but the value on the right that is assigned to it)>"
+}
+```
+
 ## Setup Development Environment
 
 To develop Homebridge plugins you must have Node.js 12 or later installed, and a modern code editor such as [VS Code](https://code.visualstudio.com/). This plugin template uses [TypeScript](https://www.typescriptlang.org/) to make development easier and comes with pre-configured settings for [VS Code](https://code.visualstudio.com/) and ESLint. If you are using VS Code install these extensions:

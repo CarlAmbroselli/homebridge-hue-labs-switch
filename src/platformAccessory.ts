@@ -1,4 +1,5 @@
 import { Service, PlatformAccessory, CharacteristicValue } from 'homebridge';
+import { HueApi } from './api'
 
 import { HueLabsHomebridgePlatform } from './platform';
 
@@ -17,18 +18,20 @@ export class HueLabsAccessory {
   constructor(
     private readonly platform: HueLabsHomebridgePlatform,
     private readonly accessory: PlatformAccessory,
+    private sensorKey: String,
+    private hueApi: HueApi
   ) {
 
     // set accessory information
     this.accessory.getService(this.platform.Service.AccessoryInformation)!
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Default-Manufacturer')
       .setCharacteristic(this.platform.Characteristic.Model, 'Default-Model')
-      .setCharacteristic(this.platform.Characteristic.SerialNumber, 'Default-Serial');
+      .setCharacteristic(this.platform.Characteristic.SerialNumber, accessory.context.device.uniqueid);
 
     this.service = this.accessory.getService(this.platform.Service.Switch) || this.accessory.addService(this.platform.Service.Switch);
 
     // service name, this is what is displayed as the default name on the Home app
-    this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.exampleDisplayName);
+    this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.name);
 
     // each service must implement at-minimum the "required characteristics" for the given service type
     // see https://developers.homebridge.io/#/service/Switch
@@ -44,10 +47,9 @@ export class HueLabsAccessory {
    * These are sent when the user changes the state of an accessory, for example, turning on the switch.
    */
   async setOn(value: CharacteristicValue) {
-    // implement your own code to turn your device on/off
-    this.states.On = value as boolean;
-
-    this.platform.log.debug('Set Characteristic On ->', value);
+    const newValue = value as boolean;
+    this.hueApi.setLabStatus(this.sensorKey, newValue);
+    this.platform.log.debug('Set Characteristic On ->', newValue);
   }
 
   /**
@@ -64,7 +66,8 @@ export class HueLabsAccessory {
    * this.service.updateCharacteristic(this.platform.Characteristic.On, true)
    */
   async getOn(): Promise<CharacteristicValue> {
-    const isOn = this.states.On;
+    let response = await this.hueApi.getLabsStatus(this.sensorKey);
+    const isOn = response.state.status != 0;
 
     this.platform.log.debug('Get Characteristic On ->', isOn);
 
