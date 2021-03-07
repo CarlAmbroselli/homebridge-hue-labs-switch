@@ -9,7 +9,7 @@
 # Homebridge Hue Labs Plugin
 
 ## Configuration
-1. Install homebridge-hue-labs plugin
+1. Install homebridge-hue-labs-switch plugin in HomeBridge
 2. Configure the plugin:
 
 I recommend that you install the homebridge-hue plugin first and use this to establish a connection to the gateway and get a token. Aftwards you'll need to set the following configuration:
