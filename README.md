@@ -17,8 +17,8 @@ I recommend that you install the homebridge-hue plugin first and use this to est
 {
     "platform": "HueLabs",
     "name": "HueLabs",
-    "host": "<gateway ip, check homekit-hue gateway config>",
-    "token": "<gateway ip, check value of homekit-hue user value (not the user key, but the value on the right that is assigned to it)>"
+    "host": "<gateway ip, use homekit-hue gateway config>",
+    "token": "<use value of homekit-hue user value (not the user key, but the value on the right that is assigned to it)>"
 }
 ```
 
