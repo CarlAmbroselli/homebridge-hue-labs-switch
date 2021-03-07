@@ -1,7 +1,7 @@
 {
   "displayName": "Homebridge Hue Labs",
   "name": "homebridge-hue-labs-switch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Exposes Hue Labs Formulars as toggles to homekit.",
   "license": "Apache-2.0",
   "repository": {
