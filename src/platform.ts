@@ -34,7 +34,7 @@ export class HueLabsHomebridgePlatform implements DynamicPlatformPlugin {
       // run the method to discover / register your devices as accessories
       this.discoverDevices();
       setInterval(() => {
-        this.discoverDevices()
+        this.discoverDevices();
       }, 30000);
     });
   }
